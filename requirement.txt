@@ -1,3 +1,4 @@
 socket
 sys
 scapy
+tabulate
