@@ -23,12 +23,12 @@ class DomainScanner:
 
     def prepare_urls(self):
         if self.choice in ["1", "3"]:
-            self.subdomains_file = input("Wordlist pour subdomains (rockyou.txt par défaut) : ") or "/usr/share/wordlists/rockyou.txt"
+            self.subdomains_file = input("Wordlist pour subdomains (/usr/share/wordlists/dirbuster/directory-list-2.3-small.txt par défaut 'ENTRER') : ") or "/usr/share/wordlists/dirbuster/directory-list-2.3-small.txt"
             subdomains = WordlistLoader.load(self.subdomains_file)
             self.urls.extend([f"http://{sub}.{self.domain}" for sub in subdomains])
         
         if self.choice in ["2", "3"]:
-            self.directories_file = input("Wordlist pour directories et fichiers (rockyou.txt par défaut) : ") or "/usr/share/wordlists/rockyou.txt"
+            self.directories_file = input("Wordlist pour directories et fichiers (/usr/share/wordlists/dirbuster/directory-list-2.3-small.txt par défaut 'ENTRER') : ") or "/usr/share/wordlists/dirbuster/directory-list-2.3-small.txt"
             directories = WordlistLoader.load(self.directories_file)
             for directory in directories:
                 for ext in self.extensions:
