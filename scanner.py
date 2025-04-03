@@ -1,3 +1,4 @@
+# run with sudo
 import sys
 import socket
 
