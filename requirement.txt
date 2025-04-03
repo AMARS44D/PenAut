@@ -1,4 +1,10 @@
 socket
 sys
+os
 scapy
 tabulate
+requests
+concurrent.futures
+subprocess
+argparse
+json
