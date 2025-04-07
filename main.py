@@ -4,4 +4,3 @@ import os, sys
 if os.geteuid() != 0:
     print("❌ Ce script doit être exécuté en root (utilisez sudo).")
     sys.exit(1)
-anas
