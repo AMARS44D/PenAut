@@ -46,7 +46,7 @@ def get_ics_count(api):
         logging.error(f"Shodan count error: {e}")
         return "Unknown"
 
-def main():
+def main_shodan():
     # Initialize Shodan API
     api = Shodan(API_KEY)
 
@@ -73,6 +73,3 @@ def main():
 
     # Save results to a file
     save_to_file(results, OUTPUT_FILE)
-
-if __name__ == "__main__":
-    main()

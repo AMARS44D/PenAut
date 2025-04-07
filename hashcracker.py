@@ -36,5 +36,9 @@ class NoSaltedHashCracker:
         
         print("Password not found in the wordlist.")
 
-hh = NoSaltedHashCracker('md5', 'wl.txt', '3ab896b5b94e97beb42b6d91294dbd62')
-hh.cracking()
+def main_hashcracker() : 
+    algo=input("Wich Algorithm ['md5', 'sha1', 'sha256', 'sha512', 'sha224', 'sha384'] ?")
+    hash=input("Enter the hash value : ")
+    wdl=input("Path of wordlist ? (rockyou by default) ") or "/usr/share/wordlists/rockyou.txt"
+    cracked=NoSaltedHashCracker(algo,wdl,hash)
+    cracked.cracking()

@@ -22,5 +22,8 @@ class CheckPasswordPwned:
                 print("✅ Ce mot de passe ne figure pas dans les fuites connues.")
         else:
             print(f"Erreur {response.status_code} : {response.text}")
-checker = CheckPasswordPwned("yahya")
-checker.check()
+
+def main_passpwnd() : 
+    pass1=input("Enter the password to check : ")
+    password=CheckPasswordPwned(pass1)
+    password.check()

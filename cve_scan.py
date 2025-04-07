@@ -22,6 +22,6 @@ def get_vulnerabilities(query, results=5):
     else:
         print("Failed to retrieve data from NVD.")
 
-# Example usage
-service = input("Enter software/service name (e.g., Apache, OpenSSH): ")
-get_vulnerabilities(service)
+def main_scancve(): 
+    service = input("Enter software/service name (e.g., Apache, OpenSSH): ")
+    get_vulnerabilities(service)
