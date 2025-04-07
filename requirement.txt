@@ -8,3 +8,6 @@ concurrent.futures
 subprocess
 argparse
 json
+hashlib
+logging
+shodan
