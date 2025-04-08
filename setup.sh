@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/bin/bash
 
 # Nom de l'outil
@@ -111,4 +110,4 @@ chmod +x "$BIN_PATH"
 # === Fin ===
 echo "✅ Installation de $TOOL_NAME terminée avec succès !"
 echo "🟢 Vous pouvez maintenant utiliser votre outil avec la commande : $TOOL_NAME"
->>>>>>> f05f665a79a9ae42e7918647efe8907d93d024f1
+
