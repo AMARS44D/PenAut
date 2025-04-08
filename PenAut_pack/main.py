@@ -1,5 +1,5 @@
 import os,sys
-from PenAut_pack.cve_scan import main_scancve
+from cve_scan import main_scancve
 from cve_search import main_cve
 from hashcracker import NoSaltedHashCracker,main_hashcracker
 from network_scanner import Network_scanner,main_net
