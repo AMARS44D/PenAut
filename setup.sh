@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # === Configuration ===
-TOOL_NAME="¨PenAut"
+TOOL_NAME="PenAut"
 TOOL_FILE="PenAut_pack"  # Dossier contenant le code source
 INSTALL_LIB_PATH="/usr/local/lib/$TOOL_NAME"
 BIN_PATH="/usr/local/bin/$TOOL_NAME"
