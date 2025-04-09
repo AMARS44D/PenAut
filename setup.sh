@@ -30,7 +30,7 @@ fi
 
 # === Installation des dépendances ===
 echo "📦 Installation des modules Python requis..."
-pip3 install -r "$REQUIREMENTS_FILE" --break-system-packages
+pip3 install -r "$REQUIREMENTS_FILE" --break-system-packages 2> /dev/null
 echo "✅ Dépendances installées avec succès."
 
 # === Création du dossier d'installation ===
