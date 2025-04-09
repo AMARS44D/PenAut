@@ -25,7 +25,7 @@ class Network_scanner:
 
 
 def main_net() : 
-    ip = input("adress reseaux (192.168.100.1/24) :")
+    ip = input("address reseau (192.168.100.1/24) :")
     inter = input("interface :")
     n = Network_scanner(ip,inter)
     n.scan_network()
