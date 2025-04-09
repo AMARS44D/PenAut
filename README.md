@@ -6,7 +6,7 @@ A powerful all-in-one Penetration testing Automation toolkit written in Python. 
 - ✅ Port scanning  
 - ✅ Subdomain & directory enumeration  
 - ✅ Hash cracking  
-- ✅ CVE search & scan  
+- ✅ CVE search  
 - ✅ Shodan integration  
 - ✅ Password breach check (Pwned DB)
 
