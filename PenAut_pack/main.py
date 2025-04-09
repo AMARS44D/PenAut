@@ -42,20 +42,28 @@ while True:
     var = 1
     while var != 0:
         if choice == 1:
+            clear()
             main_net()
         elif choice == 2:
+            clear()
             main_port()
         elif choice == 3:
+            clear()
             main_shodan()
         elif choice == 4:
+            clear()
             main_url_enum()
         elif choice == 5:
+            clear()
             main_cve()
         elif choice == 6:
+            clear()
             main_scancve()
         elif choice == 7:
+            clear()
             main_hashcracker()
         elif choice == 8:
+            clear()
             main_passpwnd()
 
         try:
@@ -64,3 +72,7 @@ while True:
             var = 1  # Revenir au menu du module
 
         clear()
+if os.name == 'nt':  # for Windows
+    os.system('cls')
+else:  # for macOS/Linux
+    os.system('clear')
