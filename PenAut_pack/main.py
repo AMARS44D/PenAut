@@ -20,7 +20,6 @@ choice=10
 while choice !=0 : 
     choice=10
     clear()
-    banner()
     print("\n\n------> TAP 0 TO QUIT <------\n\n")
     print(" 1 - Network Scanner               :")
     print(" 2 - port scanner                  :")
@@ -30,56 +29,51 @@ while choice !=0 :
     print(" 6 - CVE Scan                      :")
     print(" 7 - Hash Cracker                  :")
     print(" 8 - Password Pwned                ?")
-    choice=int(input("------------------------------------>  "))
+    choice=int(input("------------------------------------>  ")) or 10
+    if choice !=1 and choice!= 2 and choice !=3 and choice!=4 and choice!=5 and choice!=6 and choice!=7 and choice!=8 : 
+        break 
 
     var=1
     if choice==1 : 
         while var != 0 :  
             main_net()
-            var=int(input("------> TAP 0 TO QUIT <------"))
+            var=int(input("------> TAP 0 TO QUIT <------")) or 1
             clear()
-            banner()
     elif choice == 2 : 
         while var !=0 : 
             main_port()
-            var=int(input("------> TAP 0 TO QUIT <------"))
+            var=int(input("------> TAP 0 TO QUIT <------")) or 1
             clear()
-            banner()
     elif choice == 3 :
         while var != 0 :  
             main_shodan()        
-            var=int(input("------> TAP 0 TO QUIT <------"))
+            var=int(input("------> TAP 0 TO QUIT <------")) or 1
             clear()
             banner() 
 
     elif choice == 4 : 
         while var != 0 : 
             main_url_enum()
-            var=int(input("------> TAP 0 TO QUIT <------"))
+            var=int(input("------> TAP 0 TO QUIT <------")) or 1
             clear()
-            banner()
     elif choice == 5 :
             while var != 0 : 
                 main_cve()
-                var=int(input("------> TAP 0 TO QUIT <------"))
+                var=int(input("------> TAP 0 TO QUIT <------")) or 1
                 clear()
-                banner()
     elif choice == 6 : 
         while var != 0 :
             main_scancve()
-            var=int(input("------> TAP 0 TO QUIT <------"))
+            var=int(input("------> TAP 0 TO QUIT <------")) or 1
             clear()
-            banner()
     elif choice == 7 : 
         while var != 0 :
             main_hashcracker()
-            var=int(input("------> TAP 0 TO QUIT <------"))
+            var=int(input("------> TAP 0 TO QUIT <------")) or 1
             clear()
-            banner() 
     elif choice == 8 : 
         while var != 0 :   
             main_passpwnd()
-            var=int(input("------> TAP 0 TO QUIT <------"))
+            var=int(input("------> TAP 0 TO QUIT <------")) or 1
             clear()
-            banner()
 

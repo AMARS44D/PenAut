@@ -17,4 +17,8 @@ def banner() :
     
     
 def clear() : 
-    os.system("cls")
+    if os.name == 'nt':  # for Windows
+        os.system('cls')
+    else:  # for macOS/Linux
+        os.system('clear')
+    banner()

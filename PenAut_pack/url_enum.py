@@ -1,12 +1,13 @@
 import requests  # type: ignore
 from concurrent.futures import ThreadPoolExecutor
 
+
 class WordlistLoader:
     @staticmethod
     def load(filename):
         try:
             with open(filename, "r", encoding="utf-8", errors="ignore") as file:
-                return file.read().splitlines()
+                return [line.strip() for line in file if line.strip() and not line.strip().startswith("#")]
         except FileNotFoundError:
             print(f"Erreur: Le fichier '{filename}' est introuvable.")
             return []
