@@ -5,7 +5,7 @@ import logging
 
 # Configuration
 OUTPUT_FILE = 'shodan_results.json'
-SEARCH_QUERY = 'appache'  #hnayaaaa Your query
+SEARCH_QUERY = '' #Your query
 RESULT_LIMIT = 10
 API_KEY = '4r0qsTvjuSvnYubE1v0iow4Z2hbWEfg2'
 
@@ -49,6 +49,8 @@ def get_ics_count(api):
 def main_shodan():
     # Initialize Shodan API
     api = Shodan(API_KEY)
+    SEARCH_QUERY=input("Searching what ? : ")
+
 
     # Lookup an IP address
     try:
