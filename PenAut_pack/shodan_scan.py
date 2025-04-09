@@ -5,7 +5,7 @@ import logging
 
 # Configuration
 OUTPUT_FILE = 'shodan_results.json'
-SEARCH_QUERY = 'appache'  # Your query
+SEARCH_QUERY = 'appache'  #hnayaaaa Your query
 RESULT_LIMIT = 10
 API_KEY = '4r0qsTvjuSvnYubE1v0iow4Z2hbWEfg2'
 
