@@ -4,19 +4,56 @@ import json
 import logging
 
 # Configuration
-OUTPUT_FILE = 'shodan_results.json'
-SEARCH_QUERY = '' #Your query
+OUTPUT_JSON_FILE = 'shodan_results.json'
+OUTPUT_TXT_FILE = 'shodan_results.txt'
 RESULT_LIMIT = 10
-API_KEY = '4r0qsTvjuSvnYubE1v0iow4Z2hbWEfg2'
+API_KEY = '4r0qsTvjuSvnYubE1v0iow4Z2hbWEfg2'  # Remplacez par votre clé API Shodan
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-def save_to_file(data, filename):
+def save_to_json(data, filename):
     """Save data to a JSON file with pretty formatting."""
     try:
         with open(filename, 'w') as file:
             json.dump(data, file, indent=4, separators=(',', ': '))
+        logging.info(f"Results saved to {filename}")
+    except Exception as e:
+        logging.error(f"Failed to save results to {filename}: {e}")
+
+def save_to_txt(data, filename):
+    """Save data to a TXT file with organized formatting."""
+    try:
+        with open(filename, 'w') as file:
+            file.write("Shodan Scan Results\n")
+            file.write("====================\n\n")
+
+            # IP Info
+            file.write("IP Information:\n")
+            if "ip_info" in data and data["ip_info"]:
+                for key, value in data["ip_info"].items():
+                    file.write(f"  {key}: {value}\n")
+            else:
+                file.write("  No IP information available.\n")
+            file.write("\n")
+
+            # Search Results
+            file.write("Search Results:\n")
+            if "search_results" in data and data["search_results"]:
+                for idx, result in enumerate(data["search_results"], start=1):
+                    file.write(f"  Result {idx}:\n")
+                    for key, value in result.items():
+                        file.write(f"    {key}: {value}\n")
+            else:
+                file.write("  No search results available.\n")
+            file.write("\n")
+
+            # ICS Count
+            file.write("Industrial Control Systems (ICS) Count:\n")
+            if "ics_count" in data:
+                file.write(f"  Total: {data['ics_count']}\n")
+            else:
+                file.write("  ICS count information unavailable.\n")
         logging.info(f"Results saved to {filename}")
     except Exception as e:
         logging.error(f"Failed to save results to {filename}: {e}")
@@ -46,11 +83,15 @@ def get_ics_count(api):
         logging.error(f"Shodan count error: {e}")
         return "Unknown"
 
-def main_shodan():
+def main():
     # Initialize Shodan API
     api = Shodan(API_KEY)
-    SEARCH_QUERY=input("Searching what ? : ")
 
+    # Get user input for the search query
+    search_query = input("Enter your Shodan search query(EX:appache..): ").strip()
+    if not search_query:
+        logging.error("No search query provided. Exiting.")
+        return
 
     # Lookup an IP address
     try:
@@ -61,7 +102,7 @@ def main_shodan():
         ipinfo = {}
 
     # Search for websites that match the query
-    search_results = search_shodan(api, SEARCH_QUERY, RESULT_LIMIT)
+    search_results = search_shodan(api, search_query, RESULT_LIMIT)
 
     # Get the count of industrial control systems services
     ics_count = get_ics_count(api)
@@ -73,5 +114,9 @@ def main_shodan():
         "ics_count": ics_count
     }
 
-    # Save results to a file
-    save_to_file(results, OUTPUT_FILE)
+    # Save results to JSON and TXT files
+    save_to_json(results, OUTPUT_JSON_FILE)
+    save_to_txt(results, OUTPUT_TXT_FILE)
+
+if __name__ == "__main__":
+    main()
