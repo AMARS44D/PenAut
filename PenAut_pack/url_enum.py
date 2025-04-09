@@ -7,10 +7,15 @@ class WordlistLoader:
     def load(filename):
         try:
             with open(filename, "r", encoding="utf-8", errors="ignore") as file:
-                return [line.strip() for line in file if line.strip() and not line.strip().startswith("#")]
+                return [
+                    line.strip()
+                    for line in file
+                    if line.strip() and not line.lstrip().startswith("#")
+                ]
         except FileNotFoundError:
             print(f"Erreur: Le fichier '{filename}' est introuvable.")
             return []
+
 
 class DomainScanner:
     def __init__(self, domain, choice="1"):
