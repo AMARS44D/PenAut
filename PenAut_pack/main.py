@@ -1,5 +1,5 @@
 import os,sys
-from cve_scan import main_scancve
+# from cve_scan import main_scancve
 from cve_search import main_cve
 from hashcracker import NoSaltedHashCracker,main_hashcracker
 from network_scanner import Network_scanner,main_net
@@ -24,9 +24,8 @@ while True:
     print(" 3 - Shodan Scan                   :")
     print(" 4 - Url Enumeration               :")
     print(" 5 - CVE Search                    :")
-    print(" 6 - CVE Scan                      :")
-    print(" 7 - Hash Cracker                  :")
-    print(" 8 - Password Pwned                ?")
+    print(" 6 - Hash Cracker                  :")
+    print(" 7 - Password Pwned                ?")
     
     try:
         choice = int(input("------------------------------------>  ").strip())
@@ -36,7 +35,7 @@ while True:
     if choice == 0:
         break  # Quitter le programme
 
-    if choice not in range(1, 9):
+    if choice not in range(1, 8): 
         continue  # Si entrée pas valide, recommencer
 
     var = 1
@@ -58,11 +57,8 @@ while True:
             main_cve()
         elif choice == 6:
             clear()
-            main_scancve()
-        elif choice == 7:
-            clear()
             main_hashcracker()
-        elif choice == 8:
+        elif choice == 7:
             clear()
             main_passpwnd()
 
