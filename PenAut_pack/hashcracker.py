@@ -1,44 +1,37 @@
 import hashlib
+import os
 
 class NoSaltedHashCracker:
-    def __init__(self, algo, wlp, hash):
-        self.algorithme = algo
-        self.wordlistpath = wlp
-        self.hash = hash
-    
-    def cracking(self):
-        if self.algorithme not in ['md5', 'sha1', 'sha256', 'sha512', 'sha224', 'sha384']:
-            print(f"Error: {self.algorithme} is not a supported hash type.")
-            return
-        
-        with open(self.wordlistpath, 'r') as file:
-            for line in file.readlines():
-                if self.algorithme == 'md5':
-                    hash_ob = hashlib.md5(line.strip().encode())
-                elif self.algorithme == 'sha1':
-                    hash_ob = hashlib.sha1(line.strip().encode())
-                elif self.algorithme == 'sha256':
-                    hash_ob = hashlib.sha256(line.strip().encode())
-                elif self.algorithme == 'sha224':
-                    hash_ob = hashlib.sha224(line.strip().encode())
-                elif self.algorithme == 'sha512':
-                    hash_ob = hashlib.sha512(line.strip().encode())
-                elif self.algorithme == 'sha384':
-                    hash_ob = hashlib.sha384(line.strip().encode())
-                else:
-                    print(f"Error: {self.algorithme} is not a supported hash type.")
-                    return
-                
-                hashed_pass = hash_ob.hexdigest()
-                if hashed_pass == self.hash:
-                    print('Found cleartext password! ' + line.strip())
-                    return
-        
-        print("Password not found in the wordlist.")
+    def __init__(self, algo, wordlist_path, hash_value):
+        self.algorithm = algo.lower()
+        self.wordlist_path = wordlist_path
+        self.target_hash = hash_value
 
-def main_hashcracker() : 
-    algo=input("Wich Algorithm ['md5', 'sha1', 'sha256', 'sha512', 'sha224', 'sha384'] ?")
-    hash=input("Enter the hash value : ")
-    wdl=input("Path of wordlist ? (rockyou by default) ") or "/usr/share/wordlists/rockyou.txt"
-    cracked=NoSaltedHashCracker(algo,wdl,hash)
-    cracked.cracking()
+    def cracking(self):
+        if self.algorithm not in ['md5', 'sha1', 'sha256', 'sha512', 'sha224', 'sha384']:
+            print(f"❌ Error: '{self.algorithm}' is not a supported hash algorithm.")
+            return
+
+        if not os.path.isfile(self.wordlist_path):
+            print(f"❌ Error: Wordlist file '{self.wordlist_path}' was not found.")
+            return
+
+        with open(self.wordlist_path, 'r', encoding='utf-8', errors='ignore') as file:
+            for line in file:
+                word = line.strip()
+                hashed = getattr(hashlib, self.algorithm)(word.encode()).hexdigest()
+                if hashed == self.target_hash:
+                    print(f"✅ Password found: {word}")
+                    return
+        print("❌ Password not found in the wordlist.")
+
+def main_hashcracker():
+    algo = input("Which algorithm? [md5, sha1, sha256, sha512, sha224, sha384]: ").strip().lower()
+    hash_value = input("Enter the hash to crack: ").strip()
+    wordlist_path = input("Wordlist path? (Press Enter for default: /usr/share/wordlists/rockyou.txt): ").strip()
+
+    if not wordlist_path:
+        wordlist_path = "/usr/share/wordlists/rockyou.txt"
+
+    cracker = NoSaltedHashCracker(algo, wordlist_path, hash_value)
+    cracker.cracking()
