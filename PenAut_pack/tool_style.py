@@ -11,7 +11,7 @@ def banner() :
                             \_|     \___||_| |_|\_| |_/ \__,_| \__|  
                                         
         Automated Penetration Testing Toolkit for Fast and Efficient Security Audits.  
-    Created By : Aourik Anas - Amar Saad - Bennani Yahya - Amsou Ismail - Lamiri Sayf-Eddine                                        
+    Created By : Aourik Anas - Amar Saad - Bennani Yahya - Amsou Ismail - Laamri Sayf-Eddine                                        
                                             
 """)
     
